@@ -1,0 +1,67 @@
+{
+  "name": "digital-mine-auth-service",
+  "version": "1.0.0",
+  "description": "Authentication service with JWT to validate users information",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stivenramireza/digital-mine-auth-service.git"
+  },
+  "author": "Stiven Ramírez Arango",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/stivenramireza/digital-mine-auth-service/issues"
+  },
+  "homepage": "https://github.com/stivenramireza/digital-mine-auth-service#readme",
+  "scripts": {
+    "start": "npm run serve",
+    "dev": "NODE_ENV=development nodemon --watch 'src/**/*.ts' --ignore 'src/**/*.spec.ts' --exec ts-node src/server.ts",
+    "build": "npm run build-ts && npm run tslint",
+    "serve": "node dist/server.js",
+    "watch-node": "NODE_ENV=development nodemon dist/server.js",
+    "watch": "concurrently -k -p \"[{name}]\" -n \"Sass,TypeScript,Node\" -c \"yellow.bold,cyan.bold,green.bold\" \"npm run watch-ts\" \"npm run watch-node\"",
+    "test": "jest --forceExit --coverage --verbose --no-cache",
+    "build-ts": "tsc",
+    "watch-ts": "tsc -w",
+    "tslint": "tslint -c tslint.json -p tsconfig.json",
+    "debug": "npm run build && npm run watch-debug",
+    "serve-debug": "nodemon --inspect dist/server.js",
+    "watch-debug": "concurrently -k -p \"[{name}]\" -n \"Sass,TypeScript,Node\" -c \"yellow.bold,cyan.bold,green.bold\" \"npm run watch-ts\" \"npm run serve-debug\"",
+    "version": "echo $npm_package_version"
+  },
+  "devDependencies": {
+    "@types/bcrypt-nodejs": "0.0.31",
+    "@types/compression": "1.7.0",
+    "@types/cors": "2.8.10",
+    "@types/dotenv": "8.2.0",
+    "@types/errorhandler": "1.5.0",
+    "@types/express": "4.17.11",
+    "@types/http-status": "1.1.2",
+    "@types/jsonwebtoken": "8.5.1",
+    "@types/morgan": "1.9.2",
+    "@types/node": "14.14.37",
+    "@types/winston": "2.3.8"
+  },
+  "dependencies": {
+    "body-parser": "1.19.0",
+    "compression": "1.7.4",
+    "concurrently": "6.0.0",
+    "cors": "2.8.5",
+    "dotenv": "8.2.0",
+    "errorhandler": "1.5.1",
+    "express": "4.17.1",
+    "helmet": "4.4.1",
+    "http-status": "1.5.0",
+    "inversify": "5.0.5",
+    "jsonwebtoken": "8.5.1",
+    "mongoose": "5.12.2",
+    "morgan": "1.10.0",
+    "nodemon": "2.0.7",
+    "reflect-metadata": "0.1.13",
+    "ts-jest": "26.5.4",
+    "ts-mockito": "2.6.1",
+    "ts-node": "9.1.1",
+    "tslint": "6.1.3",
+    "typescript": "4.2.3",
+    "winston": "2.4.0"
+  }
+}
