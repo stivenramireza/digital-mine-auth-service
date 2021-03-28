@@ -3,12 +3,26 @@ import TYPES from './types';
 
 import { RegistrableController } from '../controllers/RegistrableController';
 
-import { Responses } from '../utils/responses';
+import { AuthController } from '../controllers/authController';
+
+import { UserServiceImp, UserService } from '../services/userService';
+
+import { UserRepositoryImp, UserRepository } from '../repositories/userRepository';
+
+import { Response } from '../utils/response';
 
 const container = new Container();
 
-container.bind<RegistrableController>(TYPES.Controller);
+// Controllers
+container.bind<RegistrableController>(TYPES.Controller).to(AuthController).inSingletonScope();
 
-container.bind<Responses>(TYPES.Responses).to(Responses).inSingletonScope();
+// Services
+container.bind<UserService>(TYPES.UserService).to(UserServiceImp).inSingletonScope();
+
+// Repositories
+container.bind<UserRepository>(TYPES.UserRepository).to(UserRepositoryImp).inSingletonScope();
+
+// Utils
+container.bind<Response>(TYPES.Response).to(Response).inSingletonScope();
 
 export default container;

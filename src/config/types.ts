@@ -1,6 +1,8 @@
 const TYPES = {
     Controller: Symbol('Controller'),
-    Responses: Symbol('Responses')
+    UserService: Symbol('UserService'),
+    UserRepository: Symbol('UserRepository'),
+    Response: Symbol('Response')
 };
 
 export default TYPES;

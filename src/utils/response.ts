@@ -2,7 +2,7 @@ import * as status from 'http-status';
 import { injectable } from 'inversify';
 
 @injectable()
-export class Responses {
+export class Response {
 
     dataResponse(data: any) {
         const response = {
