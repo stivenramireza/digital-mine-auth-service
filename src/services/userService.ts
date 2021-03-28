@@ -23,6 +23,6 @@ export class UserServiceImp implements UserService {
         if (!mailchecker.isValid(email)) throw new BadRequest('Invalid email');
         const userEmail = await this.userRepository.findByEmail(email);
         if (userEmail && !userEmail.isVerified) throw new Forbidden('Email already registered');
-        return await this.userRepository.save({ email, password, isVerified: false, profile: { name, mobilePhone }});
+        return await this.userRepository.save({ email, password, profile: { name, mobilePhone }});
     }
 }

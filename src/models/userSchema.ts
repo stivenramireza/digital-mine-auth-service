@@ -12,30 +12,17 @@ export interface UserModel extends IUser, Document {}
 
 export const UserSchema: Schema = new Schema({
     profile: {
-        name: {
-            type: String
-        },
-        mobilePhone: {
-            type: String
-        }
+        name: { type: String },
+        mobilePhone: { type: String }
     },
-    email: {
-        type: String,
-        unique: true,
-        required: true,
-        trim: true
-    },
-    password: {
-        type: String,
-        select: false
-    },
-    isVerified: {
-        type: Boolean,
-        select: false
-    }
-}, { timestamps: true, versionKey: false });
+    email: { type: String, unique: true, required: true, trim: true },
+    password: { type: String, select: false },
+    isVerified: { type: Boolean, select: false, default: true }
+}, {
+    timestamps: true, versionKey: false 
+});
 
-UserSchema.pre('save', function save(next: any) {
+UserSchema.pre<UserModel>('save', function save(next: any) {
     const user = this;
     if (!user.isModified('password')) return next();
     bcrypt.genSalt(10, (err, salt) => {
@@ -48,14 +35,10 @@ UserSchema.pre('save', function save(next: any) {
     });
 });
 
-UserSchema.pre('save', function save(next: any) {
+UserSchema.pre<UserModel>('save', function save(next: any) {
     const user = this;
     user.email = user.email.toLowerCase();
     next();
 });
-
-UserSchema.methods.comparePassword = function (candidatePassword: string, callback: any) {
-    bcrypt.compare(candidatePassword, this.password, (err, isMatch) => callback(err, isMatch));
-};
 
 export const User: Model<UserModel> = model<UserModel>('User', UserSchema);

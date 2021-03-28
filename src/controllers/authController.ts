@@ -1,5 +1,4 @@
 import * as express from 'express';
-import * as passport from 'passport';
 import { injectable, inject } from 'inversify';
 import TYPES from '../config/types';
 import { RegistrableController } from './RegistrableController';
@@ -12,7 +11,7 @@ export class AuthController implements RegistrableController {
     @inject(TYPES.UserService)
     private userService: UserService;
 
-    @inject(TYPES.Responses)
+    @inject(TYPES.Response)
     private response: Response;
 
     public register(app: express.Application): void {
